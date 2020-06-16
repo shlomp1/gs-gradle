@@ -7,9 +7,9 @@ node {
   }
   stage('build') {
      myGradleContainer.inside("-u 0") {
-	sh 'apk add bash'
      }
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+     myGradleContainer.inside("-u 0 -v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+	sh 'apk add bash'
 	sh 'cd complete && ./gradlew build'
      }
   }
