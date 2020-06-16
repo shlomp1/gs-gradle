@@ -6,10 +6,11 @@ node {
      checkout scm
   }
   stage('build') {
-     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-	args '-u root'
+     myGradleContainer.inside("-u 0") {
 	sh 'apk add bash'
-	sh 'sudo apk add bash && cd complete && ./gradlew build'
+     }
+     myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+	sh 'cd complete && ./gradlew build'
      }
   }
   stage('test') {
